@@ -2,6 +2,7 @@ package org.github.rogue1.kronos.scheduler
 
 import org.github.rogue1.kronos.entity.Identifier
 import org.github.rogue1.kronos.entity.Job
+import org.github.rogue1.kronos.entity.JobInstance
 
 abstract class JobManager(protected val workspace: Workspace) {
 
@@ -11,10 +12,8 @@ abstract class JobManager(protected val workspace: Workspace) {
 
     abstract fun enable(id: Identifier): Unit
 
-    abstract fun list(): List<Job>
+    abstract fun update(job: Job): Unit
 
-    abstract fun launch(id: Identifier): Unit
-
-    abstract fun getByName(name: String): Job?
+    abstract fun launch(id: Identifier): JobInstance
 
 }

@@ -13,8 +13,10 @@ abstract class JobInstanceManager(protected val workspace: Workspace) {
 
     abstract operator fun set(id: Identifier, state: JobInstanceState): Unit
 
-    abstract fun rerun(id: Identifier): Unit
+    abstract fun rerun(id: Identifier): JobInstance
 
     abstract fun fetchData(id: Identifier): JobInstanceLogData
+
+    abstract fun delete(id: Identifier): Unit
 
 }

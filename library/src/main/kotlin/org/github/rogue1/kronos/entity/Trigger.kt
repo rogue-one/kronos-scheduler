@@ -1,11 +1,14 @@
 package org.github.rogue1.kronos.entity
 
 import org.github.rogue1.kronos.scheduler.Scheduler
+import org.github.rogue1.kronos.scheduler.TriggerManager
+import org.github.rogue1.kronos.utils.Helper
+import java.sql.Timestamp
 
 /**
  * trigger config
  */
-class Trigger private constructor(scheduler: Scheduler,
+class Trigger private constructor(private val triggerManager: TriggerManager,
                                   id: Identifier,
                                   val name: String,
                                   val jobName: String,
@@ -13,24 +16,28 @@ class Trigger private constructor(scheduler: Scheduler,
                                   val cron: String,
                                   val desc: String?,
                                   val parameters: List<Parameter>,
-                                  isDeleted: Boolean) : Entity(id, scheduler, isDeleted) {
+                                  updatedAt: Timestamp) : Entity(id, updatedAt) {
 
     fun instances(limit: Int): List<JobInstance> {
-        return scheduler.triggerManager.instances(id, limit)
+        return triggerManager.instances(id, limit)
     }
 
     fun disable(): Trigger {
-        scheduler.triggerManager.disable(id)
+        triggerManager.disable(id)
         return clone(false)
     }
 
     fun enable(): Trigger {
-        scheduler.triggerManager.enable(id)
+        triggerManager.enable(id)
         return clone(true)
     }
 
     private fun clone(active: Boolean): Trigger {
-        return Trigger(scheduler, id, name, jobName, active, cron, desc, parameters, isDeleted)
+        return Trigger(triggerManager, id, name, jobName, active, cron, desc, parameters, Helper.now())
+    }
+
+    override fun delete(): Unit {
+        triggerManager.delete(id)
     }
 
 }
