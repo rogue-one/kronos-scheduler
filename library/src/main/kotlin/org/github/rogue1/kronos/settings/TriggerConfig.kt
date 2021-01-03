@@ -6,4 +6,5 @@ package org.github.rogue1.kronos.settings
 data class TriggerConfig(val name: String,
                          val jobName: String,
                          val cron: String,
-                         val desc: String?)
+                         val desc: String?,
+                         val parameters: List<Parameter>)

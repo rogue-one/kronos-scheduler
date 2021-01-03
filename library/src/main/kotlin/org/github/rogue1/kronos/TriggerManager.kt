@@ -1,8 +1,9 @@
 package org.github.rogue1.kronos
 
 import org.github.rogue1.kronos.settings.TriggerConfig
+import org.github.rogue1.kronos.settings.Workspace
 
-abstract class TriggerManager(protected val workspace: String) {
+abstract class TriggerManager(protected val workspace: Workspace) {
 
     abstract fun list(): List<TriggerConfig>
 

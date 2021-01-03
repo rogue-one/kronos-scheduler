@@ -1,8 +1,9 @@
 package org.github.rogue1.kronos
 
 import org.github.rogue1.kronos.settings.JobConfig
+import org.github.rogue1.kronos.settings.Workspace
 
-abstract class JobManager(protected val workspace: String) {
+abstract class JobManager(protected val workspace: Workspace) {
 
     abstract fun create(config: JobConfig): Unit
 

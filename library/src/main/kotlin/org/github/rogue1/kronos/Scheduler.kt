@@ -1,12 +1,29 @@
 package org.github.rogue1.kronos
 
+import org.github.rogue1.kronos.settings.Workspace
 
-abstract class Scheduler(var workspace: String) {
 
-    abstract fun jobManager(): JobManager
+abstract class Scheduler(workspace: Workspace,
+                         private val factory: SchedulerComponentFactory) {
 
-    abstract fun jobInstanceManager(): JobInstanceManager
+    protected var workspace: Workspace = workspace
+    set(value) {
+        field = value
+        jobManager = factory.makeJobManager(value)
+        jobInstanceManager = factory.makeJobInstanceManager(value)
+        triggerManager = factory.makeTriggerManager(value)
+    }
 
-    abstract fun triggerManager(): TriggerManager
+    var jobManager: JobManager = factory.makeJobManager(workspace)
+    private set
+
+    var jobInstanceManager: JobInstanceManager = factory.makeJobInstanceManager(workspace)
+    private set
+
+    var triggerManager: TriggerManager = factory.makeTriggerManager(workspace)
+    private set
+
+    var parameterManager: ParameterManager = factory.makeParameterManager(workspace)
+    private set
 
 }

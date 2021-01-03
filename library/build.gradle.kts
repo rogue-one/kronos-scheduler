@@ -44,7 +44,3 @@ application {
     // Define the main class for the application.
     mainClass.set("org.github.rogue1.kronos.AppKt")
 }
-val compileKotlin: KotlinCompile by tasks
-compileKotlin.kotlinOptions {
-    freeCompilerArgs = listOf("-Xinline-classes")
-}

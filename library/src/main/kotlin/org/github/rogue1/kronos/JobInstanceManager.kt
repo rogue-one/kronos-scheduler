@@ -1,11 +1,8 @@
 package org.github.rogue1.kronos
 
-import org.github.rogue1.kronos.settings.InstanceId
-import org.github.rogue1.kronos.settings.JobInstance
-import org.github.rogue1.kronos.settings.JobInstanceData
-import org.github.rogue1.kronos.settings.JobInstanceState
+import org.github.rogue1.kronos.settings.*
 
-abstract class JobInstanceManager(protected val workspace: String) {
+abstract class JobInstanceManager(protected val workspace: Workspace) {
 
     abstract fun list(jobName: String): List<JobInstance>
 
