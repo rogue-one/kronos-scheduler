@@ -1,6 +1,4 @@
-package org.github.rogue1.kronos
-
-import org.github.rogue1.kronos.settings.Workspace
+package org.github.rogue1.kronos.scheduler
 
 interface SchedulerComponentFactory {
 
