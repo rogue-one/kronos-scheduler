@@ -16,4 +16,6 @@ abstract class TriggerManager(protected val workspace: Workspace) {
 
     abstract fun disable(id: Identifier): Unit
 
+    abstract fun update(trigger: Trigger): Unit
+
 }

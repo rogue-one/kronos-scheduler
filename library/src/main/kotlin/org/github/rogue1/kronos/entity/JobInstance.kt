@@ -1,6 +1,7 @@
 package org.github.rogue1.kronos.entity
 
 import org.github.rogue1.kronos.scheduler.JobInstanceManager
+import org.github.rogue1.kronos.scheduler.ParameterManager
 import org.github.rogue1.kronos.utils.Helper
 import java.sql.Timestamp
 
